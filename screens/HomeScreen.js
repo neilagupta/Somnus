@@ -6,13 +6,18 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  Button,
   TouchableOpacity,
   View,
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
+const imagePath = '../assets/images/';
+
+export default function HomeScreen(props) {
+  // console.log(props);
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -21,39 +26,44 @@ export default function HomeScreen() {
         <View style={styles.welcomeContainer}>
           <Image
             source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
+              require(imagePath+'Somnus-moon.png')
             }
             style={styles.welcomeImage}
           />
         </View>
 
         <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>Get started by opening</Text>
 
-          <View
+          <Text style={styles.getStartedText}>You have not finished your daily sleep log</Text>
+          <Button 
+            onPress={() => {
+              console.log('Entering Daily sleep log...');
+              props.navigation.navigate('Daily');
+              }
+            }
+            title="Log Daily Sleep"/>
+
+          {/* <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
             <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
+          </View> */}
 
-          <Text style={styles.getStartedText}>
+          {/* <Text style={styles.getStartedText}>
             Change this text and your app will automatically reload.
-          </Text>
+          </Text> */}
         </View>
 
-        <View style={styles.helpContainer}>
+        {/* <View style={styles.helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
             <Text style={styles.helpLinkText}>
               Help, it didn’t automatically reload!
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ScrollView>
 
-      <View style={styles.tabBarInfoContainer}>
+      {/* <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>
           This is a tab bar. You can edit it in:
         </Text>
@@ -64,7 +74,7 @@ export default function HomeScreen() {
             navigation/MainTabNavigator.js
           </MonoText>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -111,7 +121,7 @@ function handleHelpPress() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor:'#7d85b0',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -152,7 +162,7 @@ const styles = StyleSheet.create({
   },
   getStartedText: {
     fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
+    color: '#fff',
     lineHeight: 24,
     textAlign: 'center',
   },
