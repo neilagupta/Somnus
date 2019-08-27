@@ -1,17 +1,13 @@
 import React from 'react';
 import { Text, View, Button, Slider, ScrollView, StyleSheet } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import DailyInputSecondScreen from './DailyInputSecondScreen';
 
-class DailyInputScreen extends React.Component {
-
-
+class DailyInputSecondScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            bedTime: 9,
-            minBedTime: 8,
-            maxBedTime: 12,
+            napAmount: 30,
+            minNapAmount: 0,
+            maxNapAmount: 120,
 
             sleepTime: 9,
             minSleepTime: 8,
@@ -24,33 +20,33 @@ class DailyInputScreen extends React.Component {
             timesWokenUp: 2,
             minTimesWokenUp: 0,
             maxTimesWokenUp: 5
-        }
+        } 
     } 
 
-    render() {
+    render(props) {
         return (
         <ScrollView style={styles.container}>
-            <Text style={styles.getStartedText}>What time was it when you went to bed last night?</Text>
+            <Text style={styles.getStartedText}>How long did you nap, if you napped yesterday?</Text>
             <Slider
                 style={{width: 300, height: 40, alignSelf: "center"}}
                 step={1}
-                minimumValue={this.state.minBedTime}
-                maximumValue={this.state.maxBedTime}
-                value = {this.state.bedTime}
-                onValueChange={val => this.setState({ bedTime: val })}
+                minimumValue={this.state.minNapAmount}
+                maximumValue={this.state.maxNapAmount}
+                value = {this.state.napAmount}
+                onValueChange={val => this.setState({ napAmount: val })}
                 minimumTrackTintColor="#FFFFFF"
                 maximumTrackTintColor="#000000"
             />
             <View style={styles.textCon}>
-                <Text style={styles.colorGrey}>{this.state.minBedTime} PM</Text>
+                <Text style={styles.colorGrey}>{this.state.minNapAmount} min</Text>
                 <Text style={styles.colorYellow}>
-                    {this.state.bedTime}
+                    {this.state.napAmount}
                 </Text>
-                <Text style={styles.colorGrey}>{this.state.maxBedTime} AM</Text>
+                <Text style={styles.colorGrey}>{this.state.maxNapAmount} min</Text>
             </View>
             
 
-            <Text style={styles.getStartedText}>What time was it roughly when you went to sleep last night?</Text>
+            <Text style={styles.getStartedText}>What time was it roughly when you fell sleep?</Text>
             <Slider
                 style={{width: 300, height: 40, alignSelf: "center"}}
                 step={1}
@@ -69,7 +65,7 @@ class DailyInputScreen extends React.Component {
                 <Text style={styles.colorGrey}>{this.state.maxSleeptime} AM</Text>
             </View>
 
-            <Text style={styles.getStartedText}>What time is it when you woke up?</Text>
+            <Text style={styles.getStartedText}>What time was it when you woke up?</Text>
             <Slider
                 style={{width: 300, height: 40, alignSelf: "center"}}
                 step={1}
@@ -108,10 +104,6 @@ class DailyInputScreen extends React.Component {
             </View>
 
             <Button
-                onPress={() => {
-                    console.log("Next daily input screen");
-                    this.props.navigation.navigate('DailyTwo');
-                }}
                 title="Next"
             ></Button>
         </ScrollView>
@@ -148,9 +140,4 @@ const styles = StyleSheet.create({
     }
 });
 
-const DailyInputStack = createStackNavigator({
-    Daily: DailyInputScreen,
-    DailyTwo: DailyInputSecondScreen
-})
-
-export default DailyInputStack;
+export default DailyInputSecondScreen;

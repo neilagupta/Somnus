@@ -3,12 +3,13 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 import DailyInputScreen from '../screens/DailyInputScreen'
+import DailyInputSecondScreen from '../screens/DailyInputSecondScreen';
 
 export default createAppContainer(
   createSwitchNavigator({
     // You could add another route here for authentication.
     // Read more at https://reactnavigation.org/docs/en/auth-flow.html
     Main: MainTabNavigator,
-    Daily: DailyInputScreen
+    Daily: DailyInputScreen,
   })
 );
