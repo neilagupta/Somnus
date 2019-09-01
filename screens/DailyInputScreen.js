@@ -2,9 +2,12 @@ import React from 'react';
 import { Text, View, Button, Slider, ScrollView, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import DailyInputSecondScreen from './DailyInputSecondScreen';
+import DailyInputThirdScreen from './DailyInputThirdScreen';
+import * as Progress from 'react-native-progress';
+
 
 class DailyInputScreen extends React.Component {
-
+    
 
     constructor(props) {
         super(props);
@@ -30,6 +33,7 @@ class DailyInputScreen extends React.Component {
     render() {
         return (
         <ScrollView style={styles.container}>
+            <Progress.Bar alignSelf="center" color="blue" progress={0} width={300} />
             <Text style={styles.getStartedText}>What time was it when you went to bed last night?</Text>
             <Slider
                 style={{width: 300, height: 40, alignSelf: "center"}}
@@ -88,7 +92,7 @@ class DailyInputScreen extends React.Component {
                 <Text style={styles.colorGrey}>{this.state.maxWakeUpTime} AM</Text>
             </View>
 
-            <Text style={styles.getStartedText}>How many times were you woken up?</Text>
+            <Text style={styles.getStartedText}>How many times did you wake up last night?</Text>
             <Slider
                 style={{width: 300, height: 40, alignSelf: "center"}}
                 step={1}
@@ -123,7 +127,7 @@ class DailyInputScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 65,
+    paddingTop: 20,
     alignContent: 'center',
     backgroundColor: '#7d85b0',
   },
@@ -148,9 +152,4 @@ const styles = StyleSheet.create({
     }
 });
 
-const DailyInputStack = createStackNavigator({
-    Daily: DailyInputScreen,
-    DailyTwo: DailyInputSecondScreen
-})
-
-export default DailyInputStack;
+export default DailyInputScreen;
